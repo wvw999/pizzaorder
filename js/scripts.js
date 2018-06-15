@@ -16,19 +16,20 @@ function Order (name) {
 }
 
 Order.prototype.toppings = function (topping) {
-  console.log(this);
-  console.log(topping);
-  this.topping = this.topping + 1;
+  var shit = topping
+  console.log("here is this " + this.name);
+  console.log("here is topping " + shit);
+  return this.shit = this.shit + 1;
 }
 
 // front end
 $(document).ready(function() {
   var pizza = new Order("fuckin' pizza");
   $('#pepperoni').click(function(e) {
+    e.preventDefault();
     console.log(pizza.name);
-    console.log("before " + pizza);
+    console.log("this id " + this.id);
     pizza.toppings(this.id);
-    console.log("after " + pizza);
+    console.log("after " + pizza.pepperoni);
   });
-
 });
