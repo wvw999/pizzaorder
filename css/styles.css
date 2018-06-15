@@ -4,8 +4,36 @@
 
 .header {
   text-align: center;
+  margin: 15px;
 }
 
 /*body {
   background-color: #2e004d;
 }*/
+
+h6 {
+  font-style: italic;
+  margin: 5px;
+}
+
+#toppings {
+  text-align: center;
+}
+
+#sizeSauce {
+  text-align: center;
+  margin: 15px;
+}
+
+span {
+  margin: 10px;
+}
+
+.completeOrder {
+  display: none;
+  text-align: center;
+}
+
+.buildOrder {
+  text-align: center;
+}
