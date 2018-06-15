@@ -1,8 +1,8 @@
 // back end
 function Order (name) {
   this.name = name;
-  this.size = ["small", "medium", "large", "extra large"];
-  this.sauce = ["marinara", "white", "olive oil", "pesto"];
+  this.size = [];
+  this.sauce = [];
   this.pepperoni = 0;
   this.sausage = 0;
   this.onion = 0;
@@ -11,7 +11,7 @@ function Order (name) {
   this.kalamottaolive = 0;
   this.anchovy = 0;
   this.artichoke = 0;
-  this.roastgarlic = 0;
+  this.roastedgarlic = 0;
   this.mincedgarlic = 0;
 }
 
@@ -36,6 +36,20 @@ function pageBuilder(tops) {
   });
 }
 
+Order.prototype.cashier = function (arr,pricearr) {
+  var x = 0;
+  var subttl = 5
+  var food = this;
+  arr.forEach(function(val) {
+    $('.' + val).text(food[val] + " times $" + pricearr[x].toFixed(2) + " = $" + (food[val] * pricearr[x]).toFixed(2));
+    subttl = subttl + (food[val] * pricearr[x]);
+    $('.size').text(food.size + " = $3.00");
+    $('.sauce').text(food.sauce + " = $2.00");
+    $('#total').text("     =      $ " + subttl);
+    x++;
+  });
+}
+
 function toggler() {
   $('.buildOrder').toggle(200);
   $('.completeOrder').toggle(200);
@@ -45,22 +59,21 @@ function toggler() {
 $(document).ready(function() {
   var pizza = new Order("Dinner");
   var topArray = ["pepperoni", "sausage", "onion", "greenpeppers", "blackolive", "kalamottaolive", "anchovy", "artichoke", "roastedgarlic", "mincedgarlic"];
+  var priceArray = [3, 3, 1.75, 1.75, 1.75, 2.5, 3, 2.5, 1.75, 1.75]
   var reftopArray = []
   var tallytopArray = []
+  var sizeArray = ["small", "medium", "large", "extra large"]
+  var sauceArray = ["marinara", "white", "olive oil", "pesto"]
   topArray.forEach(function(val){reftopArray.push("less" + val)});
   topArray.forEach(function(val){tallytopArray.push("tally" + val)});
   pageBuilder(topArray);
+  var allNames = [pepperoni, sausage, onion, greenpeppers, blackolive, kalamottaolive, anchovy, artichoke, roastedgarlic, mincedgarlic];
 
   $('#pepperoni, #sausage, #onion, #greenpeppers, #blackolive, #kalamottaolive, #anchovy, #artichoke, #roastedgarlic, #mincedgarlic').click(function(e) {
     e.preventDefault();
-      console.log("got to add click event");
     pizza.toppings(this.id,1);
-    console.log("back from toppings");
     var tallyIndex = tallytopArray[topArray.indexOf(this.id)];
     pizza.tallyUpdate(tallyIndex,this.id);
-    console.log("back from tally update");
-    console.log("tallyIndex " + tallyIndex);
-    console.log("this.id " + this.id);
   });
 
   $('#lesspepperoni, #lesssausage, #lessonion, #lessgreenpeppers, #lessblackolive, #lesskalamottaolive, #lessanchovy, #lessartichoke, #lessroastedgarlic, #lessmincedgarlic').click(function(e) {
@@ -68,14 +81,15 @@ $(document).ready(function() {
     var lessIndex = topArray[reftopArray.indexOf(this.id)];
     pizza.toppings(lessIndex,-1);
     var tallyIndex = tallytopArray[reftopArray.indexOf(this.id)];
-    console.log("tallyIndex " + tallyIndex);
-    console.log("lessIndex " + lessIndex);
     pizza.tallyUpdate(tallyIndex,lessIndex);
   });
 
   $('#complete').click(function(e) {
     e.preventDefault();
     toggler();
+    pizza.size.push(sizeArray[parseInt($("input:radio[name=q1]:checked").val())])
+    pizza.sauce.push(sauceArray[parseInt($("input:radio[name=q2]:checked").val())])
+    pizza.cashier(topArray,priceArray)
   });
   $('#goback').click(function(e) {
     e.preventDefault();

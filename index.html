@@ -13,9 +13,10 @@
    <body>
      <div class="container">
        <div class="header">
-         <h1>The Faun's Pizza Delivery</h1>
+         <h1>The Faun's Pizzeria</h1>
          <img src="img/faun.jpg" id="faun">
-         <h6>hot, crusty suffering delivered right to your door!</h6>
+         <h6>hot, crusty suffering</h6>
+          <h6>delivered right to your door!</h6>
        </div>
        <div class="row">
          <div class="col-md-3">
@@ -23,21 +24,39 @@
          </div>
          <div class="col-md-6">
            <div class="buildOrder">
-             <div id="sizeSauce">
-               <p>size and sauce selectors go here</p>
-               <span class="quest">What size pizza?</span>
-                <div class="radio">
-                  <label><input type="radio" name="q1" value="1"> 4" small!</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" name="q1" value="2"> 12" medium</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" name="q1" value="3"> 16" large</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" name="q1" value="4"> 48" Extra large</label>
-                </div>
+             <div class="row">
+               <div class="col-md-6">
+                 <div id="sizes">
+                    <div class="radio">
+                      <label><input type="radio" name="q1" value="1"> 4" small!</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q1" value="2"> 12" medium</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q1" value="3" checked> 16" large</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q1" value="4"> 48" Extra large</label>
+                    </div>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <div id="sauces">
+                    <div class="radio">
+                      <label><input type="radio" name="q2" value="1" checked> marinara</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q2" value="2"> white</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q2" value="3"> olive oil</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="q2" value="4"> pesto</label>
+                    </div>
+                 </div>
+               </div>
              </div>
              <div id="toppings">
 
@@ -45,16 +64,29 @@
              <button id="complete" class="btn btn-primary" type="submit" name="hold">submit</button>
            </div>
            <div class="completeOrder">
-
-             <button id="goback" class="btn btn-primary" type="submit" name="hold">goback</button>
+             <!-- order summary to go here -->
+             <div class="orderSummary">
+               <h4>Size <span class="size"></span></h4>
+               <h4>Sauce <span class="sauce"></span></h4>
+               <h4>Pepperoni <span class="pepperoni"></span></h4>
+               <h4>Sausage <span class="sausage"></span></h4>
+               <h4>Onion <span class="onion"></span></h4>
+               <h4>Green Peppers <span class="greenpeppers"></span></h4>
+               <h4>Black Olive <span class="blackolive"></span></h4>
+               <h4>Kalamotta Olive <span class="kalamottaolive"></span></h4>
+               <h4>Anchovy <span class="anchovy"></span></h4>
+               <h4>Artichoke <span class="artichoke"></span></h4>
+               <h4>Roasted Garlic <span class="roastedgarlic"></span></h4>
+               <h4>Minced Garlic <span class="mincedgarlic"></span></h4>
+               <h1 class="total">Total: <span id="total"></span></h1>
+             </div>
+             <button id="goback" class="btn btn-danger" type="submit" name="hold">goback</button><button id="order" class="btn btn-primary" type="submit" name="hold">Order!</button>
            </div>
          </div>
          <div class="col-md-3">
            <!-- empty place-holder col-->
          </div>
        </div>
-
      </div>
-
    </body>
  </html>
