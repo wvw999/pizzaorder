@@ -1,6 +1,6 @@
 # _Pizza Order Site page_
 
-#### _Exercise for building a user Pizza Order Site using JavaScript, bootstrap, and JQuery, 6/6/2018_
+#### _Exercise for building a user Pizza Order Site using JavaScript, bootstrap, and JQuery, 6/15/2018_
 
 #### By _**William Swanson**_
 
@@ -22,7 +22,7 @@ _more instructions soon_
 
 ## Known Bugs
 
-_extra credit work has rather odd behavior. two reverse functions were added: one reverses the display order of the output from ascending to desending. the second function, which is only available as an add-on to the first reverse function, takes any number it finds and reverses it. the bug is that rather than work consistently, it works for the first five results through the for loop, and then fails on the next five, returning undefined, and continues to loop in this fashion._
+_none_
 
 ## Specs list
 
