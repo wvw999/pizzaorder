@@ -24,8 +24,12 @@ h6 {
   margin: 5px;
 }
 
-#toppings {
-  text-align: center;
+.righty, #righty {
+  float: right;
+}
+
+.lefty, #lefty {
+  float: left;
 }
 
 #sizes {

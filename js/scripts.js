@@ -27,18 +27,26 @@ Order.prototype.tallyUpdate = function (val,value) {
 }
 
 function pageBuilder(tops) {
+  var x = 1;
   tops.forEach(function(val) {
-    $('#toppings').append('<button id="' + val + '" class="btn btn-primary" type="submit" name="' + val + '">+</button>' +
-              '<button class="btn btn-basic" type="submit" name="' + val + '">' + val + '</button>' +
-              '<button id="less' + val + '" class="btn btn-danger" type="submit" name="' + val + '">-</button>' +
-              '<span id="tally' + val + '">0</span><br> <br>'
-    )
+    if(x % 2 == 0) {
+    $('#toppings').append('<button id="' + val + '" class="btn btn-primary righty" type="submit" name="' + val + '">+</button>' +
+              '<button class="btn btn-basic righty" type="submit" name="' + val + '">' + val + '</button>' +
+              '<button id="less' + val + '" class="btn btn-danger righty" type="submit" name="' + val + '">-</button>' +
+              '<span class="righty" id="tally' + val + '">0</span><br> <br>');
+    } else {
+      $('#toppings').append('<button id="' + val + '" class="btn btn-primary lefty" type="submit" name="' + val + '">+</button>' +
+                '<button class="btn btn-basic lefty" type="submit" name="' + val + '">' + val + '</button>' +
+                '<button id="less' + val + '" class="btn btn-danger lefty" type="submit" name="' + val + '">-</button>' +
+                '<span class="lefty" id="tally' + val + '">0</span>');
+    }
+    x++;
   });
 }
 
 Order.prototype.cashier = function (arr,pricearr) {
   var x = 0;
-  var subttl = 5
+  var subttl = 5;
   var food = this;
   arr.forEach(function(val) {
     $('.' + val).text(food[val] + " times $" + pricearr[x].toFixed(2) + " = $" + (food[val] * pricearr[x]).toFixed(2));
@@ -59,11 +67,11 @@ function toggler() {
 $(document).ready(function() {
   var pizza = new Order("Dinner");
   var topArray = ["pepperoni", "sausage", "onion", "greenpeppers", "blackolive", "kalamottaolive", "anchovy", "artichoke", "roastedgarlic", "mincedgarlic"];
-  var priceArray = [3, 3, 1.75, 1.75, 1.75, 2.5, 3, 2.5, 1.75, 1.75]
-  var reftopArray = []
-  var tallytopArray = []
-  var sizeArray = ["small", "medium", "large", "extra large"]
-  var sauceArray = ["marinara", "white", "olive oil", "pesto"]
+  var priceArray = [3, 3, 1.75, 1.75, 1.75, 2.5, 3, 2.5, 1.75, 1.75];
+  var reftopArray = [];
+  var tallytopArray = [];
+  var sizeArray = [0, "small", "medium", "large", "extra large"];
+  var sauceArray = [0, "marinara", "white", "olive oil", "pesto"];
   topArray.forEach(function(val){reftopArray.push("less" + val)});
   topArray.forEach(function(val){tallytopArray.push("tally" + val)});
   pageBuilder(topArray);
@@ -87,12 +95,14 @@ $(document).ready(function() {
   $('#complete').click(function(e) {
     e.preventDefault();
     toggler();
-    pizza.size.push(sizeArray[parseInt($("input:radio[name=q1]:checked").val())])
-    pizza.sauce.push(sauceArray[parseInt($("input:radio[name=q2]:checked").val())])
-    pizza.cashier(topArray,priceArray)
+    pizza.size.push(sizeArray[parseInt($("input:radio[name=q1]:checked").val())]);
+    pizza.sauce.push(sauceArray[parseInt($("input:radio[name=q2]:checked").val())]);
+    pizza.cashier(topArray,priceArray);
   });
   $('#goback').click(function(e) {
     e.preventDefault();
     toggler();
+    pizza.size = [];
+    pizza.sauce = [];
   });
 });
